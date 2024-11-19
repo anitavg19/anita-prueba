@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Carga de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.id_centro_trabajo.data else 'Agregar' }} Carga de Trabajo</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.id_centro_trabajo.label(class="form-label") }}
+                {{ form.id_centro_trabajo(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cantidad_horas_requeridas.label(class="form-label") }}
+                {{ form.cantidad_horas_requeridas(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.disponibilidad_recursos.label(class="form-label") }}
+                {{ form.disponibilidad_recursos(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('carga_trabajo.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

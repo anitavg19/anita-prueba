@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Bienvenido a la Aplicación{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+        <h1 class="mt-5">Bienvenido a la Aplicación de Gestión</h1>
+        <p class="lead">Seleccione una de las siguientes opciones:</p>
+        <div class="mt-4">
+            <a href="{{ url_for('lugar.index') }}" class="btn btn-lg btn-primary mb-3">Gestionar Lugares</a>
+            <br>
+            <a href="{{ url_for('persona.index') }}" class="btn btn-lg btn-success">Gestionar Personas</a>
+            <br>
+            <br>
+            <a href="{{ url_for('producto.index') }}" class="btn btn-lg btn-success">Gestionar Productos</a>
+            <br>
+            <br>
+            <a href="{{ url_for('recurso.index') }}" class="btn btn-lg btn-success">Gestionar Recursos</a>
+            <br>
+            <br>
+            <a href="{{ url_for('inventario.index') }}" class="btn btn-lg btn-success">Gestionar Inventario</a>
+            <br>
+            <br>
+            <a href="{{ url_for('material.index') }}" class="btn btn-lg btn-success">Gestionar Materiales</a>
+            <br>
+            <br>
+            <a href="{{ url_for('bom.index') }}" class="btn btn-lg btn-success">Gestionar BOM de Materiales</a>
+            <br>
+            <br>
+            <a href="{{ url_for('orden_compra.index') }}" class="btn btn-lg btn-success">Gestionar Órdenes de Compra</a>
+            <br>
+            <br>
+            <a href="{{ url_for('orden_produccion.index') }}" class="btn btn-lg btn-success">Gestionar Órdenes de Producción</a>
+            <br>
+            <br>
+            <a href="{{ url_for('centro_trabajo.index') }}" class="btn btn-lg btn-success">Gestionar Centro de Trabajo</a>
+            <br>
+            <br>
+            <a href="{{ url_for('carga_trabajo.index') }}" class="btn btn-lg btn-success">Gestionar Carga de Trabajo</a>
+            <br>
+            <br>
+            <a href="{{ url_for('calendario_capacidad.index') }}" class="btn btn-lg btn-success">Gestionar Calendario de Capacidad</a>
+            <br>
+            <br>
+            <a href="{{ url_for('calendario_produccion.index') }}" class="btn btn-lg btn-success">Gestionar Calendario de Producción</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

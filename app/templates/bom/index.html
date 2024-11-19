@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Materiales (BOM){% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Lista de Materiales</h2>
+        <a href="{{ url_for('bom.crear') }}" class="btn btn-primary mb-3">Agregar Lista de Materiales</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID del Producto</th>
+                    <th>ID del Material</th>
+                    <th>Cantidad por Producto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bom in boms %}
+                <tr>
+                    <td>{{ bom.id_bom }}</td>
+                    <td>{{ bom.id_producto }}</td>
+                    <td>{{ bom.id_material }}</td>
+                    <td>{{ bom.cantidad_por_producto }}</td>
+                    <td>
+                        <a href="{{ url_for('bom.editar', id=bom.id_bom) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('bom.eliminar', id=bom.id_bom) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta Lista de Materiales?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

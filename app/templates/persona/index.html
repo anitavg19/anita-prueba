@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Personas{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Personas</h2>
+        <a href="{{ url_for('persona.crear') }}" class="btn btn-primary mb-3">Agregar Persona</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Correo</th>
+                    <th>Cantidad de Mascotas</th>
+                    <th>Semana de Inicio</th>
+                    <th>Lugar</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                <tr>
+                    <td>{{ persona.nombre }} {{ persona.apellidos }}</td>
+                    <td>{{ persona.correo }}</td>
+                    <td>{{ persona.cantidad_mascotas }}</td>
+                    <td>{{ persona.semana_inicio }}</td>
+                    <td>{{ persona.lugar.nombre }}</td>
+                    <td>
+                        <a href="{{ url_for('persona.editar', id=persona.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('persona.eliminar', id=persona.id) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

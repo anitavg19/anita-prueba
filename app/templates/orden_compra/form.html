@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Orden de Compra{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.id_proveedor.data else 'Agregar' }} Orden de Compra</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.id_proveedor.label(class="form-label") }}
+                {{ form.id_proveedor(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.material_solicitado.label(class="form-label") }}
+                {{ form.material_solicitado(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cantidad_ordenada.label(class="form-label") }}
+                {{ form.cantidad_ordenada(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.fecha_entrega_esperada.label(class="form-label") }}
+                {{ form.fecha_entrega_esperada(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('orden_compra.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

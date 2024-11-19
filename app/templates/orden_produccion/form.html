@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Orden de Producción{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.producto_asociado.data else 'Agregar' }} Orden de Producción</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.producto_asociado.label(class="form-label") }}
+                {{ form.producto_asociado(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.fecha_inicio_produccion.label(class="form-label") }}
+                {{ form.fecha_inicio_produccion(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.fecha_fin_produccion.label(class="form-label") }}
+                {{ form.fecha_fin_produccion(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cantidad_ordenada.label(class="form-label") }}
+                {{ form.cantidad_ordenada(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('orden_produccion.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

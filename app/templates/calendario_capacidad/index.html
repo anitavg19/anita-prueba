@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendario de Capacidad{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Calendario de Capacidad</h2>
+        <a href="{{ url_for('calendario_capacidad.crear') }}" class="btn btn-primary mb-3">Agregar Fecha</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Horas Laborables</th>
+                    <th>Capacidad Restante</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for calendario in calendarios %}
+                <tr>
+                    <td>{{ calendario.id_calendario_capacidad }}</td>
+                    <td>{{ calendario.fecha.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ calendario.horas_laborables }}</td>
+                    <td>{{ calendario.capacidad_restante }}</td>
+                    <td>
+                        <a href="{{ url_for('calendario_capacidad.editar', id=calendario.id_calendario_capacidad) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('calendario_capacidad.eliminar', id=calendario.id_calendario_capacidad) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Lugar{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.nombre.data else 'Agregar' }} Lugar</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.nombre.label(class="form-label") }}
+                {{ form.nombre(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.codigo_postal.label(class="form-label") }}
+                {{ form.codigo_postal(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('lugar.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Centros de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Centros de Trabajo</h2>
+        <a href="{{ url_for('centro_trabajo.crear') }}" class="btn btn-primary mb-3">Agregar Centro de Trabajo</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Capacidad Teórica</th>
+                    <th>Capacidad Real</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for centro in centros %}
+                <tr>
+                    <td>{{ centro.id_centro_trabajo }}</td>
+                    <td>{{ centro.nombre_centro_trabajo }}</td>
+                    <td>{{ centro.capacidad_teorica }}</td>
+                    <td>{{ centro.capacidad_real }}</td>
+                    <td>
+                        <a href="{{ url_for('centro_trabajo.editar', id=centro.id_centro_trabajo) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('centro_trabajo.eliminar', id=centro.id_centro_trabajo) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este centro de trabajo?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

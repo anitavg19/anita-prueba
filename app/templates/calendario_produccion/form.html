@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Calendario de Producción{% endblock %}
+
+{% block content %}
+<h1>{{ 'Editar' if form.semana.data else 'Agregar' }} Registro</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.semana.label }}<br>
+        {{ form.semana(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.capacidad_disponible.label }}<br>
+        {{ form.capacidad_disponible(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.produccion_programada.label }}<br>
+        {{ form.produccion_programada(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+<a href="{{ url_for('calendario_produccion.index') }}" class="btn btn-secondary">Volver</a>
+{% endblock %}

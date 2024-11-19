@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}II0703{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Flask App</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="
+
+nav-item">
+                    <a class="nav-link" href="{{ url_for('lugar.index') }}">Lugares</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('persona.index') }}">Personas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('producto.index') }}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('recurso.index') }}">Recursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('inventario.index') }}">Inventario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('material.index') }}">Materiales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('bom.index') }}">Lista de Materiales BOM/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('orden_compra.index') }}">Órdenes de Compra/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('orden_produccion.index') }}">Órdenes de Producción/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('centro_trabajo.index') }}">Centro de Trabajo/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('carga_trabajo.index') }}">Carga de Trabajo/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('calendario_capacidad.index') }}">Calendario de Capacidad/a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('calendario_produccion.index') }}">Calendario de Producción/a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

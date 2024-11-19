@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Lugares{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Lugares</h2>
+        <a href="{{ url_for('lugar.crear') }}" class="btn btn-primary mb-3">Agregar Lugar</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código Postal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lugar in lugares %}
+                <tr>
+                    <td>{{ lugar.nombre }}</td>
+                    <td>{{ lugar.codigo_postal }}</td>
+                    <td>
+                        <a href="{{ url_for('lugar.editar', id=lugar.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('lugar.eliminar', id=lugar.id) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

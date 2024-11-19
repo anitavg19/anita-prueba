@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Cargas de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Cargas de Trabajo</h2>
+        <a href="{{ url_for('carga_trabajo.crear') }}" class="btn btn-primary mb-3">Agregar Carga de Trabajo</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Centro de Trabajo</th>
+                    <th>Horas Requeridas</th>
+                    <th>Disponibilidad de Recursos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for carga in cargas %}
+                <tr>
+                    <td>{{ carga.id_carga }}</td>
+                    <td>{{ carga.id_centro_trabajo }}</td>
+                    <td>{{ carga.cantidad_horas_requeridas }}</td>
+                    <td>{{ carga.disponibilidad_recursos }}</td>
+                    <td>
+                        <a href="{{ url_for('carga_trabajo.editar', id=carga.id_carga) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('carga_trabajo.eliminar', id=carga.id_carga) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta carga de trabajo?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

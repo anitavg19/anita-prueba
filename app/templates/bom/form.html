@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Lista de Materiales{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.id_producto.data else 'Agregar' }} Lista de Materiales</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.id_producto.label(class="form-label") }}
+                {{ form.id_producto(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.id_material.label(class="form-label") }}
+                {{ form.id_material(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cantidad_por_producto.label(class="form-label") }}
+                {{ form.cantidad_por_producto(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('bom.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

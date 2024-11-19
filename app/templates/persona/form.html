@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Persona{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.nombre.data else 'Agregar' }} Persona</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.numero_identidad.label(class="form-label") }}
+                {{ form.numero_identidad(class="form-control") }}
+                {% if form.numero_identidad.errors %}
+                    <div class="text-danger">
+                        {% for error in form.numero_identidad.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.nombre.label(class="form-label") }}
+                {{ form.nombre(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.apellidos.label(class="form-label") }}
+                {{ form.apellidos(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.fecha_nacimiento.label(class="form-label") }}
+                {{ form.fecha_nacimiento(class="form-control") }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.correo.label(class="form-label") }}
+                {{ form.correo(class="form-control") }}
+                {% if form.correo.errors %}
+                    <div class="text-danger">
+                        {% for error in form.correo.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.cantidad_mascotas.label(class="form-label") }}
+                {{ form.cantidad_mascotas(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.semana_inicio.label(class="form-label") }}
+                {{ form.semana_inicio(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.lugar_id.label(class="form-label") }}
+                {{ form.lugar_id(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('persona.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

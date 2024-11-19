@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Inventarios{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Inventarios</h2>
+        <a href="{{ url_for('inventario.crear') }}" class="btn btn-primary mb-3">Agregar Inventario</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID del Material</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Cantidad Requerida</th>
+                    <th>Fecha de Reabastecimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inventario in inventarios %}
+                <tr>
+                    <td>{{ inventario.id_inventario }}</td>
+                    <td>{{ inventario.id_material }}</td>
+                    <td>{{ inventario.cantidad_disponible }}</td>
+                    <td>{{ inventario.cantidad_requerida }}</td>
+                    <td>{{ inventario.fecha_reabastecimiento.strftime('%Y-%m-%d') if inventario.fecha_reabastecimiento else 'N/A' }}</td>
+                    <td>
+                        <a href="{{ url_for('inventario.editar', id=inventario.id_inventario) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('inventario.eliminar', id=inventario.id_inventario) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este inventario?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Órdenes de Compra{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mt-4">Órdenes de Compra</h2>
+        <a href="{{ url_for('orden_compra.crear') }}" class="btn btn-primary mb-3">Agregar Orden de Compra</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID del Proveedor</th>
+                    <th>Material Solicitado</th>
+                    <th>Cantidad Ordenada</th>
+                    <th>Fecha de Entrega Esperada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for orden in ordenes %}
+                <tr>
+                    <td>{{ orden.id_orden_compra }}</td>
+                    <td>{{ orden.id_proveedor }}</td>
+                    <td>{{ orden.material_solicitado }}</td>
+                    <td>{{ orden.cantidad_ordenada }}</td>
+                    <td>{{ orden.fecha_entrega_esperada.strftime('%Y-%m-%d') }}</td>
+                    <td>
+                        <a href="{{ url_for('orden_compra.editar', id=orden.id_orden_compra) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <form action="{{ url_for('orden_compra.eliminar', id=orden.id_orden_compra) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta orden de compra?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

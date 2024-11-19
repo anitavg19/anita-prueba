@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Centro de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.nombre_centro_trabajo.data else 'Agregar' }} Centro de Trabajo</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.nombre_centro_trabajo.label(class="form-label") }}
+                {{ form.nombre_centro_trabajo(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.capacidad_teorica.label(class="form-label") }}
+                {{ form.capacidad_teorica(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.capacidad_real.label(class="form-label") }}
+                {{ form.capacidad_real(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('centro_trabajo.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}

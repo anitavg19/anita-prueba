@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar/Editar Recurso{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mt-4">{{ 'Editar' if form.tipo_recurso.data else 'Agregar' }} Recurso</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.tipo_recurso.label(class="form-label") }}
+                {{ form.tipo_recurso(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.disponibilidad.label(class="form-label") }}
+                {{ form.disponibilidad(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <a href="{{ url_for('recurso.index') }}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}
